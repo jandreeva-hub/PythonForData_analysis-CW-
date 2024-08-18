@@ -1,0 +1,119 @@
+
+19:49:18 From Iurii Barynin to Everyone:
+	df = pd.read_csv('Sales_USA.csv')	df.head()
+19:49:24 From Iurii Barynin to Everyone:
+	df['City'].unique()
+19:49:32 From Iurii Barynin to Everyone:
+	df.shape
+19:49:37 From Iurii Barynin to Everyone:
+	df['Check'].mean()
+19:53:51 From Iurii Barynin to Everyone:
+	df_stat = df.groupby('City').count()	df_stat
+19:53:57 From Iurii Barynin to Everyone:
+	df_stat['Pecent'] = df_stat['Check'] / df_stat['Check'].sum()	df_stat
+20:00:10 From Iurii Barynin to Everyone:
+	df_sample = df.sample(frac=0.1, random_state=42)
+20:00:18 From Iurii Barynin to Everyone:
+	df_sample['Check'].mean()
+20:00:23 From Iurii Barynin to Everyone:
+	df_stat2 = df_sample.groupby('City').count()	df_stat2
+20:00:30 From Iurii Barynin to Everyone:
+	df_stat2['Pecent'] = df_stat2['Check'] / df_stat2['Check'].sum()	df_stat2
+20:05:40 From Iurii Barynin to Everyone:
+	df_aust = df[df['City'] == 'Austin']
+20:05:47 From Iurii Barynin to Everyone:
+	df_ny = df[df['City'] == 'NY']
+20:05:53 From Iurii Barynin to Everyone:
+	df_port = df[df['City'] == 'Portland']
+20:06:00 From Iurii Barynin to Everyone:
+	df_la = df[df['City'] == 'LA']
+20:06:07 From Iurii Barynin to Everyone:
+	df_sample_aust = df_aust.sample(frac=0.1, random_state=None)
+20:06:13 From Iurii Barynin to Everyone:
+	df_sample_ny = df_ny.sample(frac=0.1, random_state=None)
+20:06:18 From Iurii Barynin to Everyone:
+	df_sample_port = df_port.sample(frac=0.1, random_state=None)
+20:06:24 From Iurii Barynin to Everyone:
+	df_sample_la = df_la.sample(frac=0.1, random_state=None)
+20:06:29 From Iurii Barynin to Everyone:
+	df_sample2 = pd.concat([df_sample_aust, df_sample_ny, df_sample_port, df_sample_la])
+20:06:35 From Iurii Barynin to Everyone:
+	df_sample2.shape
+20:13:20 From Iurii Barynin to Everyone:
+	df_stat3 = df_sample2.groupby('City').count()	df_stat3['Pecent'] = df_stat3['Check'] / df_stat3['Check'].sum()	df_stat3
+20:13:28 From Iurii Barynin to Everyone:
+	df['Check'].mean()
+20:13:35 From Iurii Barynin to Everyone:
+	df_sample['Check'].mean()
+20:13:47 From Iurii Barynin to Everyone:
+	df_sample2['Check'].mean()
+20:13:53 From Iurii Barynin to Everyone:
+	abs(df['Check'].mean() - df_sample['Check'].mean())
+20:14:00 From Iurii Barynin to Everyone:
+	abs(df['Check'].mean() - df_sample2['Check'].mean())
+20:14:05 From Iurii Barynin to Everyone:
+	abs(df['Check'].mean() - df_sample['Check'].mean()) / abs(df['Check'].mean() - df_sample2['Check'].mean())
+2
+	-
+20:18:32 From Забродин Семен to Everyone:
+	data_normal = np.random.normal(10, 5, 100)
+20:26:40 From Забродин Семен to Everyone:
+	from scipy.stats import poisson
+20:26:52 From Забродин Семен to Everyone:
+	poisson.rvs(mu=mu, size=10000)
+
+
+21:48:15 From Евгений Слюсарев to Everyone:
+	sns.histplot(df['CustomerAge'])	plt.axvline(df['CustomerAge'].mean(), color='red', linestyle='dashed', linewidth=2, label='Mean')
+21:48:23 From Евгений Слюсарев to Everyone:
+	import numpy as np	import scipy.stats as st	import matplotlib.pyplot as plt
+21:52:07 From Забродин Семен to Everyone:
+	norm.cdf(1.96)
+21:52:15 From Забродин Семен to Everyone:
+	from scipy.stats import norm
+22:11:10 From Iurii Barynin to Everyone:
+	df = pd.read_csv('mobile_sales.csv', parse_dates = ['Date'])	df.head()
+22:15:32 From Iurii Barynin to Everyone:
+	df =df[	    (df['Date'] < pd.to_datetime('2024-02-01'))	    &(df['Date'] >= pd.to_datetime('2024-01-01'))	    &(df['CustomerGender'] == 'Female')	    &(df['PaymentMethod'] == 'Online')	]	df.head()
+22:17:38 From Iurii Barynin to Everyone:
+	df_sum = df.groupby('Date')[['UnitsSold']].sum()
+22:35:19 From Забродин Семен to Everyone:
+	df['group'] = np.random.choice([0, 1], size=df.shape[0])
+22:36:49 From Забродин Семен to Everyone:
+	df = df[
+	    df['Date'] >= pd.to_datetime('2024-07-01')
+	]
+22:38:20 From Забродин Семен to Everyone:
+	df_stat_0 = df_stat[
+	    df_stat['group'] == 0
+	].reset_index()
+	
+	df_stat_1 = df_stat[
+	    df_stat['group'] == 1
+	].reset_index()
+22:38:29 From Забродин Семен to Everyone:
+	df_stat = df.groupby(['Date', 'group'])[['TotalRevenue']].sum().reset_index(drop = False)
+22:40:12 From Забродин Семен to Everyone:
+	import seaborn as sns
+	import matplotlib.pyplot as plt
+	import pandas as pd
+	
+	# Отрисовка графиков
+	plt.figure(figsize=(10, 6))
+	
+	sns.histplot(data=df_stat_0, x='TotalRevenue', label='Линия 1')
+	sns.histplot(data=df_stat_1, x='TotalRevenue', label='Линия 2')
+	
+	# plt.xlabel('Ось X')
+	# plt.ylabel('Ось Y')
+	# plt.title('Два линейных графика на одной оси')
+	# plt.legend()
+	
+	# # Настройка сетки
+	# plt.grid(True, which='both', linestyle='--', linewidth=0.5)
+	
+	plt.show()
+22:41:06 From Забродин Семен to Everyone:
+	import scipy.stats as stats
+	
+	stats.ttest_ind(df_stat_0['TotalRevenue'], df_stat_1['TotalRevenue'])

@@ -1,0 +1,128 @@
+
+	dan = pd.read_csv("used_cars_data.csv")	dan.head()
+
+	dan.tail()
+
+	dan.sample(10)
+
+	dan.info()
+
+	dan.dtypes
+
+	dan1 = pd.DataFrame({"zero":round(dan.isnull().sum()/dan.shape[0]*100,2)})	dan1['zero'] = dan1['zero'].astype(str)+'%'	dan1
+
+	dan.nunique()
+
+	dan.drop_duplicates()
+
+	df = df.drop(['Car_owner'], axis=1) # drop empty columns
+	df.head()
+
+	from datetime import timedelta
+
+	df['Old_years'] = pd.to_datetime('2024-08-12')
+	df['Old_years']
+
+	from datetime import timedelta, date
+
+	date.today()
+
+	Cell In[49], line 1	    dan(['Old_years'] = pd.to_datetime('2024-08-12')	        ^	SyntaxError: expression cannot contain assignment, perhaps you meant "=="?
+
+	df['Old_years'] = date.today().year - df['Year']
+	df['Old_years']
+
+	df['Marka'] = df['Name'].str.split().str.get(0)
+
+	df['Marka'].unique()
+
+	df['Model'] = df['Name'].str.split().str.get(1) + df['Name'].str.split().str.get(2)
+
+	df['Model']
+
+	df['Marka'] = df['Marka'].replace({'ISUZU': 'Isuzu', 'Mini' : 'Mini Cooper', 'Land' : 'Land Rover', 'OpelCorsa' : 'Opel'})
+	df.head()
+
+	
+
+
+	df['Mileage_value'] = df['Mileage'].str.split().str.get(0).astype(float)
+	df['Mileage_name'] = df['Mileage'].str.split().str.get(1)
+	df['Mileage_name']
+
+	df = df.drop(['Name'], axis=1) # drop empty columns
+	df.head()
+
+	df['Engine_value'] = df['Engine'].str.split().str.get(0).astype(float)
+	df['Engine_name'] = df['Engine'].str.split().str.get(1)
+	df['Engine_value']
+
+	
+
+
+	df['Power_value'] = df['Power'].str.split().str.get(0)
+	df['Power_name'] = df['Power'].str.split().str.get(1)
+
+	df['Power_value'] = df['Power_value'].replace({'null' : np.nan})
+
+	df['Power_value'] = df['Power_value'].astype(float)
+	df['Power_value']
+
+	df['New_Price_value'] = df['New_Price'].str.split().str.get(0).astype(float)
+	df['New_Price_name'] = df['New_Price'].str.split().str.get(1)
+	df['New_Price_name']
+
+	df = df.drop(['Mileage', 'Engine', 'Power', 'New_Price'], axis=1) # drop empty columns
+	df.head()
+
+	df[
+	    df['Mileage_name'] == 'km/kg'
+	]['Mileage_value'] =  df[
+	        df['Mileage_name'] == 'km/kg'
+	    ]['Mileage_value'] * 1.333
+
+	df['Mileage_name'] = 'kmpl'
+	df.head()
+
+	df[
+	    df['New_Price_name'] == 'Cr'
+	]['New_Price_value'] =  df[
+	        df['New_Price_name'] == 'Cr'
+	    ]['New_Price_value'] * 100
+
+	df['New_Price_name'] = 'Lakh'
+	df.head()
+
+	df['Fuel_Type'].unique()
+
+	df['Transmission'].unique()
+
+	df['Owner_Type'].unique()
+
+	df['Seats'].dtypes
+
+	df['Seats'].astype(int) # с ошибкой
+
+	df.isnull().sum()
+
+	df.groupby('Seats').count()
+
+	df['Seats'].mode()[0]
+
+	df['Seats'] = df['Seats'].fillna(df['Seats'].mode()[0])
+
+	df['Mileage_value']
+
+	sns.histplot(df['Mileage_value'])
+
+	df['Mileage_value'] = df['Mileage_value'].fillna(df['Mileage_value'].median())
+
+	df['Mileage_value'].median()
+
+	df['Engine_value']
+
+	sns.histplot(df['Engine_value'])
+
+	df['Engine_value'] = df['Engine_value'].fillna(df['Engine_value'].mode()[0])
+
+	df['Engine_name'] = df['Engine_name'].fillna('CC')

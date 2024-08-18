@@ -1,0 +1,160 @@
+19:35:46 From Евгений Чернышев to Everyone:
+	+
+19:41:14 From iuliia andreeva to Everyone:
+	+
+19:41:34 From Евгений Слюсарев to Everyone:
+	+
+19:54:20 From Евгений Чернышев to Everyone:
+	-
+19:54:25 From iuliia andreeva to Everyone:
+	+
+20:07:06 From Евгений Чернышев to Everyone:
+	+
+20:07:12 From Iurii Barynin to Everyone:
+	+
+20:07:12 From Juri Matcin to Everyone:
+	+
+20:09:20 From iuliia andreeva to Everyone:
+	+
+20:21:55 From Забродин Семен to Everyone:
+	mobile_sales.csv
+20:33:30 From Евгений Чернышев to Everyone:
+	#fig, axs = plt.subplots(1, 2, figsize=(12, 5))
+	#sample_mean = np.mean(data)
+	#sem = stats.sem(data)  # Стандартная ошибка среднего
+	#stats.t.interval(confidence_level, degrees_freedom, sample_mean, sem)
+20:41:45 From Евгений Чернышев to Everyone:
+	+
+20:41:47 From Евгений Слюсарев to Everyone:
+	+
+20:41:49 From iuliia andreeva to Everyone:
+	+
+20:41:51 From Iurii Barynin to Everyone:
+	+
+20:45:14 From Iurii Barynin to Everyone:
+	df = pd.read_csv('mobile_sales.csv')	df.head()
+20:47:29 From Iurii Barynin to Everyone:
+	np.random.choice([0, 1], size = 1000)
+20:51:37 From Iurii Barynin to Everyone:
+	df['Date'] = pd.to_datetime(df['Date'])
+20:51:43 From Iurii Barynin to Everyone:
+	df1 = df[	    df['Date'] <= pd.to_datetime('2024-05-01')	]	df1.head()
+20:51:48 From Iurii Barynin to Everyone:
+	df2 = df[	    df['Date'] > pd.to_datetime('2024-05-01')	]	df2.head()
+20:55:15 From Iurii Barynin to Everyone:
+	sns.histplot(df1, x = 'UnitsSold', hue = 'Choice')
+20:59:53 From Iurii Barynin to Everyone:
+	ztest(df1[df1['Choice']==0]['UnitsSold'], df1[df1['Choice']==1]['UnitsSold'])
+21:15:52 From Забродин Семен to Everyone:
+	Коллеги, поставьте + если вы здесь и вы готовы
+21:15:59 From iuliia andreeva to Everyone:
+	+
+21:16:04 From Iurii Barynin to Everyone:
+	+
+21:18:10 From Juri Matcin to Everyone:
+	+
+21:20:18 From Евгений Чернышев to Everyone:
+	+
+21:21:01 From Евгений Слюсарев to Everyone:
+	+
+21:25:25 From Евгений Чернышев to Everyone:
+	+
+21:25:25 From iuliia andreeva to Everyone:
+	+
+21:25:29 From Juri Matcin to Everyone:
+	+
+21:25:31 From Евгений Слюсарев to Everyone:
+	+
+21:25:34 From Iurii Barynin to Everyone:
+	+
+21:43:10 From Евгений Чернышев to Everyone:
+	import yfinance as yf
+	tickers = 'TSLA'
+	df_tsla = yf.download(tickers, start='2023-01-01', end='2023-12-31')
+	tickers = 'AMZN'
+	df_amzn = yf.download(tickers, start='2023-01-01', end='2023-12-31')
+21:43:42 From Евгений Чернышев to Everyone:
+	%pip install yfinance
+21:52:49 From Евгений Чернышев to Everyone:
+	import yfinance as yf
+	tickers = 'TSLA'
+	df_tsla = yf.download(tickers, start='2023-01-01', end='2023-12-31')
+	tickers = 'AMZN'
+	df_amzn = yf.download(tickers, start='2023-01-01', end='2023-12-31')
+	df_tsla = df_tsla[['Close']]
+	df_amzn = df_amzn[['Close']]
+	df_amzn.columns = ['close_amzn']
+	df_tsla.columns = ['close_tsla']
+	# data.corr(method='pearson')
+21:55:22 From Евгений Чернышев to Everyone:
+	df_con = pd.concat([df_amzn, df_tsla], axis=1)
+	df_con
+21:55:27 From Евгений Чернышев to Everyone:
+	df_con_min = df_con.head(5)
+	df_con_min
+21:57:49 From Евгений Чернышев to Everyone:
+	std_amzn = np.std(df_con_min['close_amzn'])
+	std_amzn
+21:58:12 From Евгений Чернышев to Everyone:
+	std_tsla = np.std(df_con_min['close_tsla'])
+	std_tsla
+21:59:22 From Евгений Чернышев to Everyone:
+	mean_tsla = df_con_min['close_tsla'].mean()
+	mean_tsla
+21:59:23 From Евгений Чернышев to Everyone:
+	mean_amzn = df_con_min['close_amzn'].mean()
+	mean_amzn
+22:05:51 From Евгений Чернышев to Everyone:
+	covar = 0
+	for x, y in zip(df_con_min['close_amzn'],  df_con_min['close_tsla']):
+	    covar = covar + (x - mean_amzn) * (x - mean_tsla)
+	
+	covar = covar/df_con_min.shape[0]
+	print(covar)
+22:07:07 From Евгений Чернышев to Everyone:
+	covar = 0
+	for x, y in zip(df_con_min['close_amzn'],  df_con_min['close_tsla']):
+	    covar = covar + (x - mean_amzn) * (x - mean_tsla)
+	
+	covar = covar / df_con_min.shape[0]
+	
+	cor = covar / (std_amzn * std_tsla)
+	
+	print(cor)
+22:10:27 From Евгений Чернышев to Everyone:
+	covar = 0
+	for x, y in zip(df_con_min['close_amzn'],  df_con_min['close_tsla']):
+	    covar = covar + (x - mean_amzn) * (y - mean_tsla)
+	
+	covar = covar / df_con_min.shape[0]
+	
+	cor = covar / (std_amzn * std_tsla)
+	
+	print(cor)
+22:15:11 From Iurii Barynin to Everyone:
+	df = pd.read_csv('reviews.csv')	df.head()
+22:16:57 From Забродин Семен to Everyone:
+	import matplotlib.pyplot as plt
+22:19:13 From Iurii Barynin to Everyone:
+	plt.scatter(df['Seller_rating'], df['Number_of_reviews'])	plt.xlabel('Рейтинг продавца')	plt.ylabel('Количество отзывов')
+22:23:17 From Iurii Barynin to Everyone:
+	df[['Seller_rating', 'Number_of_reviews']].corr(method = 'spearman')
+22:23:22 From Iurii Barynin to Everyone:
+	df_1 = df[	    df['Seller_rating'] <= 0	]
+22:23:26 From Iurii Barynin to Everyone:
+	df_2 = df[	    df['Seller_rating'] > 0	]
+22:26:06 From Iurii Barynin to Everyone:
+	plt.scatter(df_1['Seller_rating'], df_1['Number_of_reviews'])	plt.xlabel('Рейтинг продавца')	plt.ylabel('Количество отзывов')
+22:26:12 From Iurii Barynin to Everyone:
+	df_1[['Seller_rating', 'Number_of_reviews']].corr()
+22:26:16 From Iurii Barynin to Everyone:
+	df_2[['Seller_rating', 'Number_of_reviews']].corr()
+22:26:21 From Iurii Barynin to Everyone:
+	plt.scatter(df_2['Seller_rating'], df_2['Number_of_reviews'])	plt.xlabel('Рейтинг продавца')	plt.ylabel('Количество отзывов')
+22:28:37 From Забродин Семен to Everyone:
+	https://www.tylervigen.com/spurious/correlation/5862_the-number-of-movies-tom-cruise-appeared-in_correlates-with_votes-for-the-democrat-presidential-candidate-in-montana
+22:33:41 From Забродин Семен to Everyone:
+	Econometrics
+	A MODERN APPROACH 5th EDITION
+22:33:50 From Забродин Семен to Everyone:
+	Jefrey M.IWooldridge

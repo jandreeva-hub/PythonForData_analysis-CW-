@@ -1,0 +1,104 @@
+19:45:09 From Евгений Чернышев to Everyone:
+	+
+19:45:14 From iuliia andreeva to Everyone:
+	+
+19:45:18 From Евгений Слюсарев to Everyone:
+	+
+19:45:19 From Juri Matcin to Everyone:
+	+
+19:47:26 From Евгений Чернышев to Everyone:
+	+
+19:47:28 From iuliia andreeva to Everyone:
+	+
+19:47:30 From Juri Matcin to Everyone:
+	+
+19:47:36 From Евгений Слюсарев to Everyone:
+	+
+19:47:59 From Евгений Чернышев to Everyone:
+	+
+19:48:01 From iuliia andreeva to Everyone:
+	+
+19:48:05 From Juri Matcin to Everyone:
+	-
+19:48:06 From Евгений Слюсарев to Everyone:
+	-
+19:49:24 From Juri Matcin to Everyone:
+	+
+19:49:54 From Евгений Слюсарев to Everyone:
+	+
+20:15:23 From Евгений Чернышев to Everyone:
+	+
+20:15:23 From Juri Matcin to Everyone:
+	+
+20:15:25 From iuliia andreeva to Everyone:
+	+
+20:15:25 From Евгений Слюсарев to Everyone:
+	+
+20:22:43 From Евгений Чернышев to Everyone:
+	+
+20:22:47 From iuliia andreeva to Everyone:
+	+
+20:22:48 From Juri Matcin to Everyone:
+	+
+20:22:53 From Евгений Слюсарев to Everyone:
+	+
+20:38:07 From Евгений Чернышев to Everyone:
+	+
+20:38:08 From Евгений Слюсарев to Everyone:
+	+
+20:38:08 From iuliia andreeva to Everyone:
+	+
+20:38:11 From Juri Matcin to Everyone:
+	+
+20:42:29 From iuliia andreeva to Everyone:
+	+
+20:42:30 From Juri Matcin to Everyone:
+	+
+20:42:32 From Евгений Слюсарев to Everyone:
+	+
+20:42:32 From Евгений Чернышев to Everyone:
+	+
+21:17:17 From Евгений Слюсарев to Everyone:
+	+
+21:19:48 From iuliia andreeva to Everyone:
+	+
+21:19:49 From Евгений Чернышев to Everyone:
+	+
+21:46:42 From iuliia andreeva to Everyone:
+	+
+21:46:56 From Juri Matcin to Everyone:
+	+
+21:47:10 From Евгений Слюсарев to Everyone:
+	+
+21:53:41 From iuliia andreeva to Everyone:
+	+
+21:58:07 From Евгений Чернышев to Everyone:
+	+
+21:58:16 From Juri Matcin to Everyone:
+	+
+22:08:00 From Juri Matcin to Everyone:
+	+
+22:08:06 From Евгений Чернышев to Everyone:
+	-
+22:08:13 From iuliia andreeva to Everyone:
+	+
+22:10:43 From Евгений Чернышев to Everyone:
+	+
+22:32:49 From Забродин Семен to Everyone:
+	plt.figure(figsize=(10, 6))
+	sns.histplot(sales_sample1, bins=15, color='blue', alpha=0.5, label='Выборка 1', element='step')
+	sns.histplot(sales_sample2, bins=15, color='red', alpha=0.5, label='Выборка 2', element='step')
+	
+	# Добавление подписей и легенды
+	plt.xlabel('Средние продажи на 1-го человека')
+	plt.ylabel('Частота')
+	plt.title('Гистограммы продаж для двух выборок')
+	plt.legend()
+	
+	# Отображение графика
+	plt.show()
+22:35:49 From Забродин Семен to Everyone:
+	from scipy.stats import ttest_ind
+	
+	# Проведение t-теста
+	ttest_ind(sales_sample1, sales_sample2)

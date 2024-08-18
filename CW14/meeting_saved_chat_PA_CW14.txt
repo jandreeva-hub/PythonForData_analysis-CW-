@@ -1,0 +1,274 @@
+19:36:18 From Забродин Семен to Everyone:
+	pip install --upgrade plotly
+19:42:43 From iuliia andreeva to Everyone:
+	+
+19:42:46 From Iurii Barynin to Everyone:
+	+
+19:42:49 From Евгений Чернішев to Everyone:
+	+
+19:42:51 From Евгений Слюсарев to Everyone:
+	+
+19:44:25 From Забродин Семен to Everyone:
+	https://colorscheme.ru/html-colors.html
+19:45:31 From Iurii Barynin to Everyone:
+	+
+19:45:34 From iuliia andreeva to Everyone:
+	+
+19:45:36 From Евгений Слюсарев to Everyone:
+	+
+19:45:37 From Евгений Чернішев to Everyone:
+	+
+19:47:45 From Iurii Barynin to Everyone:
+	%pip install yfinance
+19:48:34 From Евгений Чернішев to Everyone:
+	+
+19:49:06 From Евгений Слюсарев to Everyone:
+	[*********************100%%**********************]  1 of 1 completed		1 Failed download:	['1234']: YFTzMissingError('$%ticker%: possibly delisted; No timezone found')
+19:52:47 From Iurii Barynin to Everyone:
+	data = data[['Close']].reset_index()
+19:57:16 From Iurii Barynin to Everyone:
+	fig = go.Figure()		fig.add_trace(	    go.Scatter(	        x=data['Date'], 	        y=data['Close'], 	        mode='lines'	    )	)		fig.update_layout(	    title=f'Close Price for {tickers} ', 	    xaxis_title='Date', 	    yaxis_title='Price'	)		fig.show()
+19:57:22 From Iurii Barynin to Everyone:
+	fig.update_traces(	    line=dict(color='#FF1493', width=4)	)	fig.show()
+20:06:27 From Iurii Barynin to Everyone:
+	data[	    data['Date'] >= pd.to_datetime('2023-03-01')	].min()
+20:06:39 From Iurii Barynin to Everyone:
+	data[	    data['Date'] >= pd.to_datetime('2023-03-01')	].max()
+20:06:46 From Iurii Barynin to Everyone:
+	data[	    data['Close'] >= 293	]
+20:06:53 From Iurii Barynin to Everyone:
+	fig.add_annotation(	    x='2023-04-26', 	    y= 153.75 , 	    text="Min", 	    showarrow=True, 	    arrowhead=1	)	fig.show()
+20:07:00 From Iurii Barynin to Everyone:
+	fig.add_annotation(	    x='2023-07-18', 	    y= 293.339996 , 	    text="Max", 	    showarrow=True, 	    arrowhead=1	)	fig.show()
+20:07:50 From iuliia andreeva to Everyone:
+	+
+20:07:51 From Iurii Barynin to Everyone:
+	+
+20:07:54 From Евгений Чернішев to Everyone:
+	+
+20:07:59 From Евгений Слюсарев to Everyone:
+	+
+20:10:20 From iuliia andreeva to Everyone:
+	+
+20:10:31 From Евгений Чернішев to iuliia andreeva(direct message):
+	+
+20:12:03 From Евгений Слюсарев to Everyone:
+	+
+20:12:27 From Евгений Чернішев to Everyone:
+	+
+20:14:17 From iuliia andreeva to Евгений Чернішев(direct message):
+	+
+20:14:22 From Евгений Чернішев to iuliia andreeva(direct message):
+	+
+20:47:22 From iuliia andreeva to Everyone:
+	+
+20:47:23 From Iurii Barynin to Everyone:
+	+
+20:50:43 From iuliia andreeva to Everyone:
+	+
+20:50:46 From Iurii Barynin to Everyone:
+	+
+21:15:34 From Евгений Чернышев to Everyone:
+	+
+21:15:39 From Забродин Семен to Everyone:
+	Поставьте + в чат, если вы здесь
+21:15:45 From iuliia andreeva to Everyone:
+	+
+21:16:31 From Iurii Barynin to Everyone:
+	+
+21:17:22 From Евгений Слюсарев to Everyone:
+	+
+21:20:18 From Евгений Слюсарев to Everyone:
+	+
+21:20:21 From Iurii Barynin to Everyone:
+	+
+21:20:23 From iuliia andreeva to Everyone:
+	+
+21:20:33 From Евгений Чернышев to Everyone:
+	+
+21:22:01 From Евгений Чернышев to Everyone:
+	+
+21:22:02 From Iurii Barynin to Everyone:
+	+
+21:22:04 From Евгений Слюсарев to Everyone:
+	+
+21:22:06 From iuliia andreeva to Everyone:
+	+
+21:27:36 From iuliia andreeva to Everyone:
+	+
+21:27:45 From Забродин Семен to Everyone:
+	vs code download
+21:41:47 From iuliia andreeva to Everyone:
+	+
+21:45:07 From iuliia andreeva to Everyone:
+	+
+21:45:07 From Евгений Чернышев to Everyone:
+	+
+21:45:14 From Евгений Слюсарев to Everyone:
+	+
+21:49:40 From Забродин Семен to Everyone:
+	Версия 0
+21:49:41 From Забродин Семен to Everyone:
+	from dash import Dash, html, dcc
+	import plotly.express as px
+	
+	app = Dash(__name__)
+	
+	df = px.data.iris()
+	
+	fig = px.scatter(df, x='sepal_width', y='sepal_length', color='species')
+	
+	app.layout = html.Div([
+	    html.H1("Визуализация набора данных Iris"),
+	    dcc.Graph(figure=fig)
+	])
+	
+	if __name__ == '__main__':
+	    app.run_server(debug=True)
+21:54:05 From Забродин Семен to Everyone:
+	ipywidgets
+22:01:04 From iuliia andreeva to Everyone:
+	+
+22:02:28 From Евгений Слюсарев to Everyone:
+	+
+22:04:09 From iuliia andreeva to Everyone:
+	+
+22:04:33 From Евгений Чернышев to Everyone:
+	+
+22:06:52 From Забродин Семен to Everyone:
+	Версия 1
+22:07:04 From Забродин Семен to Everyone:
+	from dash import Dash, html, dcc
+	import plotly.express as px
+	
+	app = Dash(__name__)
+	
+	df = px.data.iris()
+	
+	fig = px.scatter(df, x='sepal_width', y='sepal_length', color='species')
+	
+	header = html.Header(html.H1('My Dashboard', className='header-title'))
+	
+	sidebar = html.Div([
+	    html.H2('Navigation', className='sidebar-title'),
+	    html.Ul([
+	        html.Li(html.A('Главная', href='/')),
+	        html.Li(html.A('Страница 1', href='/page-1')),
+	        html.Li(html.A('Страница 2', href='/page-2'))
+	    ])
+	], className='sidebar')
+	
+	main_content = html.Section([
+	    html.Article([
+	        html.H3('Заголовок основного контента'),
+	        html.P('Некоторые важные материалы или визуализации данных находятся здесь.')
+	    ], className='main-article')
+	], className='main-content')
+	
+	footer = html.Footer([
+	    html.P('Copyright (c) 2024 My Dashboard'),
+	    html.P('Больше информации здесь')
+	], className='footer')
+22:07:05 From Забродин Семен to Everyone:
+	app.layout = html.Div([
+	    header,
+	    sidebar,
+	    main_content,
+	    footer
+	], className='dashboard-container')
+	
+	if __name__ == '__main__':
+	    app.run_server(debug=True)
+22:12:09 From Iurii Barynin to Everyone:
+	+
+22:18:33 From Забродин Семен to Everyone:
+	Версия 2
+22:18:35 From Забродин Семен to Everyone:
+	from dash import Dash, html, dcc
+	import plotly.express as px
+	
+	app = Dash(__name__)
+	
+	df = px.data.iris()
+	
+	fig = px.scatter(df, x='sepal_width', y='sepal_length', color='species')
+	
+	header = html.Header(html.H1('My Dashboard', className='header-title'))
+	
+	sidebar = html.Div([
+	    html.H2('Navigation', className='sidebar-title'),
+	    html.Ul([
+	        html.Li(html.A('Главная', href='/')),
+	        html.Li(html.A('Страница 1', href='/page-1')),
+	        html.Li(html.A('Страница 2', href='/page-2'))
+	    ])
+	], className='sidebar')
+	
+	main_content = html.Section([
+	    html.Article([
+	        html.H3('Заголовок основного контента'),
+	        html.P('Некоторые важные материалы или визуализации данных находятся здесь.')
+	    ], className='main-article')
+	], className='main-content')
+22:18:45 From Забродин Семен to Everyone:
+	footer = html.Footer([
+	    html.P('Copyright (c) 2024 My Dashboard'),
+	    html.P('Больше информации здесь')
+	], className='footer')
+	
+	graph_component = dcc.Graph(
+	    id='example-graph',
+	    figure={
+	        'data': [
+	            {'x': [1, 2, 3], 'y': [4, 1, 2], 'type':'bar', 'name':'SF'},
+	            {'x': [1, 2, 3], 'y': [2, 4, 5], 'type':'bar', 'name':'Montréal'}
+	        ],
+	        'layout': {
+	            'title': 'Dash Data Visualization'
+	        }
+	    }
+	)
+	
+	dropdown_component = dcc.Dropdown(
+	    id='my-dropdown',
+	    options=[
+	        {'label': 'San Francisco', 'value': 'SF'},
+	        {'label': 'Montreal', 'value': 'MTL'}
+	    ],
+	    value='SF'
+	)
+	
+	slider_component = dcc.Slider(
+	    min=0,
+	    max=20,
+	    step=0.5,
+	    value=10,
+	    marks={i: str(i) for i in range(21)}
+	)
+22:18:49 From Забродин Семен to Everyone:
+	app.layout = html.Div([
+	    header,
+	    sidebar,
+	    main_content,
+	    footer,
+	    graph_component,
+	    dropdown_component,
+	    slider_component
+	], className='dashboard-container')
+	
+	if __name__ == '__main__':
+	    app.run_server(debug=True)
+22:19:18 From iuliia andreeva to Everyone:
+	+
+22:19:49 From Евгений Слюсарев to Everyone:
+	+
+22:23:36 From iuliia andreeva to Everyone:
+	+
+22:23:59 From Евгений Чернышев to Everyone:
+	-
+22:24:08 From Iurii Barynin to Everyone:
+	-
+22:25:22 From Евгений Слюсарев to Everyone:
+	-
+22:42:33 From Забродин Семен to Everyone:
+	scikit-learn

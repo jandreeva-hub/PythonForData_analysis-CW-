@@ -1,0 +1,245 @@
+19:33:40 From Забродин Семен to Everyone:
+	import seaborn as sns
+19:33:50 From Забродин Семен to Everyone:
+	fmri = sns.load_dataset("fmri")
+	fmri.head()
+19:34:11 From Забродин Семен to Everyone:
+	%pip install --upgrade certifi
+19:34:26 From Забродин Семен to Everyone:
+	import certifi
+	import ssl
+	import urllib.request
+	
+	ssl._create_default_https_context = ssl._create_unverified_context
+19:38:23 From Евгений Чернышев to Everyone:
+	+
+19:38:25 From Iurii Barynin to Everyone:
+	+
+19:38:30 From iuliia andreeva to Everyone:
+	+
+19:38:35 From Евгений Слюсарев to Everyone:
+	+
+19:39:32 From Juri Matcin to Everyone:
+	+
+19:40:50 From iuliia andreeva to Everyone:
+	+
+19:40:51 From Iurii Barynin to Everyone:
+	+
+19:40:52 From Juri Matcin to Everyone:
+	+
+19:40:54 From Евгений Чернышев to Everyone:
+	+
+19:41:10 From Евгений Слюсарев to Everyone:
+	+
+19:44:01 From Евгений Слюсарев to Everyone:
+	+
+19:44:01 From Евгений Чернышев to Everyone:
+	+
+19:44:03 From iuliia andreeva to Everyone:
+	+
+19:44:04 From Iurii Barynin to Everyone:
+	+
+19:44:06 From Juri Matcin to Everyone:
+	+
+20:06:16 From Евгений Чернышев to Everyone:
+	+
+20:06:19 From iuliia andreeva to Everyone:
+	+
+20:06:19 From Juri Matcin to Everyone:
+	+
+20:06:19 From Евгений Слюсарев to Everyone:
+	+
+20:06:20 From Iurii Barynin to Everyone:
+	+
+20:08:06 From iuliia andreeva to Everyone:
+	+
+20:08:09 From Евгений Чернышев to Everyone:
+	+
+20:08:09 From Iurii Barynin to Everyone:
+	+
+20:08:11 From Juri Matcin to Everyone:
+	+
+20:08:16 From Евгений Слюсарев to Everyone:
+	+
+20:40:21 From Евгений Чернышев to Everyone:
+	df = pl.read_csv('titanic.csv')
+	df.head()
+20:40:28 From Евгений Чернышев to Everyone:
+	df.select(['Pclass', 'Sex', "Age"])
+20:40:35 From Евгений Чернышев to Everyone:
+	df_filter = df.filter(
+	    (pl.col('Pclass') == 1)  & (pl.col('Fare') >= 100)
+	)
+	df_filter
+20:40:45 From Евгений Чернышев to Everyone:
+	df_filter.with_columns([
+	    (pl.col("Fare") * 4.86).alias("value in $")
+	])
+20:40:52 From Евгений Чернышев to Everyone:
+	df = pl.read_csv('titanic.csv')
+	df.head()
+20:40:59 From Евгений Чернышев to Everyone:
+	df.filter(
+	    (pl.col('Age') <= 18)  & (pl.col('Sex') == 'female') & (pl.col('SibSp') > 0) & (pl.col('Parch') > 0)
+	)
+20:41:38 From Евгений Слюсарев to Everyone:
+	Reacted to "df.filter(
+	    (pl.c..." with 👍
+20:42:01 From Евгений Чернышев to Everyone:
+	list1 =  np.random.rand(500 000 000)
+20:53:46 From Iurii Barynin to Everyone:
+	import time	list1 = np.random.rand(50000000)	df_pd = pd.DataFrame({'col1': list1})	df_pl = pl.DataFrame({'col1': list1})	time.time()	bev = time.time()	df_pd.mean()	avt = time.time()	dif1 = avt - bev	dif1	df_pl.mean()	bev = time.time()	df_pl.mean()	avt = time.time()	dif1 = avt - bev	dif1
+20:55:23 From Евгений Слюсарев to Everyone:
+	0.02728581428527832
+21:15:19 From iuliia andreeva to Everyone:
+	+
+21:15:19 From Евгений Чернышев to Everyone:
+	+
+21:15:25 From Забродин Семен to Everyone:
+	Коллеги, поставьте + в чат если вы здесь и готовы
+21:15:38 From Евгений Слюсарев to Everyone:
+	+
+21:17:10 From Juri Matcin to Everyone:
+	+
+21:17:15 From Iurii Barynin to Everyone:
+	+
+21:24:39 From Juri Matcin to Everyone:
+	+
+21:24:40 From Евгений Чернышев to Everyone:
+	+
+21:24:42 From Iurii Barynin to Everyone:
+	+
+21:24:43 From iuliia andreeva to Everyone:
+	+
+21:24:49 From Евгений Слюсарев to Everyone:
+	+
+21:42:50 From iuliia andreeva to Everyone:
+	+
+21:42:51 From Juri Matcin to Everyone:
+	+
+21:42:53 From Евгений Чернышев to Everyone:
+	+
+21:42:53 From Iurii Barynin to Everyone:
+	+
+21:42:57 From Евгений Слюсарев to Everyone:
+	+
+21:44:52 From Евгений Чернышев to Everyone:
+	+
+21:44:54 From Juri Matcin to Everyone:
+	+
+21:44:55 From iuliia andreeva to Everyone:
+	+
+21:44:56 From Iurii Barynin to Everyone:
+	+
+21:45:13 From Евгений Слюсарев to Everyone:
+	+
+21:50:13 From Евгений Чернышев to Everyone:
+	df.select([
+	    pl.col("Current Loan Amount").count().alias("count"),
+	    pl.col("Current Loan Amount").null_count().alias("null_count"),
+	    pl.col("Current Loan Amount").mean().alias("mean"),
+	    pl.col("Current Loan Amount").median().alias("median"),
+	    pl.col("Current Loan Amount").quantile(0.25).alias("25%"),
+	    pl.col("Current Loan Amount").quantile(0.75).alias("75%")
+	])
+21:50:21 From Евгений Чернышев to Everyone:
+	df = pl.read_csv('credit_train.csv', null_values = ['NaN', 'NA'])
+	df
+21:57:44 From Евгений Чернышев to Everyone:
+	def func(data, col):
+	    return data.select([
+	        pl.col(col).count().alias("count"),
+	        pl.col(col).null_count().alias("null_count"),
+	        pl.col(col).mean().alias("mean"),
+	        pl.col(col).median().alias("median"),
+	        pl.col(col).quantile(0.25).alias("25%"),
+	        pl.col(col).quantile(0.75).alias("75%")
+	    ])
+	
+	func(df, col = 'Current Loan Amount')
+21:58:11 From Евгений Чернышев to Everyone:
+	func(df, col = 'Credit Score')
+22:05:44 From Евгений Чернышев to Everyone:
+	df.group_by("Loan Status").agg(
+	    [
+	        pl.mean("Current Loan Amount").alias("mean_Car_lo_amount"),
+	        pl.median("Current Loan Amount").alias("med_Car_lo_amount"),
+	        pl.mean("Monthly Debt").alias("mean_mon_debt"),
+	        pl.median("Monthly Debt").alias("med_mon_debt")
+	    ]
+	)
+22:05:51 From Евгений Чернышев to Everyone:
+	df.group_by("Purpose").agg(
+	    [
+	        pl.max("Current Loan Amount").alias("max_Car_lo_amount"),
+	        ]
+	)
+22:06:51 From Евгений Чернышев to Everyone:
+	+
+22:06:55 From iuliia andreeva to Everyone:
+	+
+22:06:56 From Iurii Barynin to Everyone:
+	+
+22:06:56 From Евгений Слюсарев to Everyone:
+	+
+22:06:59 From Juri Matcin to Everyone:
+	+
+22:09:41 From iuliia andreeva to Everyone:
+	+
+22:09:41 From Евгений Чернышев to Everyone:
+	+
+22:09:47 From Iurii Barynin to Everyone:
+	+
+22:11:34 From Забродин Семен to Everyone:
+	df.sort(['year', 'price'], descending=True)
+22:23:49 From Евгений Слюсарев to Everyone:
+	+
+22:23:51 From Евгений Чернышев to Everyone:
+	+
+22:23:52 From iuliia andreeva to Everyone:
+	+
+22:23:53 From Iurii Barynin to Everyone:
+	+
+22:23:57 From Juri Matcin to Everyone:
+	+
+22:26:41 From Евгений Чернышев to Everyone:
+	+
+22:26:41 From Евгений Слюсарев to Everyone:
+	+
+22:26:42 From Juri Matcin to Everyone:
+	+
+22:26:42 From iuliia andreeva to Everyone:
+	+
+22:26:49 From Iurii Barynin to Everyone:
+	+
+22:27:31 From Забродин Семен to Everyone:
+	def is_price_more_500(price): 
+	    return price >= 500
+22:27:34 From Забродин Семен to Everyone:
+	df.filter(is_price_more_500(pl.col("price")))
+22:30:47 From iuliia andreeva to Everyone:
+	+
+22:30:48 From Iurii Barynin to Everyone:
+	+
+22:30:51 From Juri Matcin to Everyone:
+	+
+22:30:53 From Евгений Чернышев to Everyone:
+	+
+22:30:59 From Евгений Слюсарев to Everyone:
+	+
+22:32:30 From Евгений Чернышев to Everyone:
+	+
+22:32:31 From iuliia andreeva to Everyone:
+	+
+22:32:34 From Juri Matcin to Everyone:
+	+
+22:32:54 From Iurii Barynin to Everyone:
+	+
+22:35:06 From iuliia andreeva to Everyone:
+	+
+22:35:11 From Iurii Barynin to Everyone:
+	+
+22:35:11 From Евгений Чернышев to Everyone:
+	+
+22:35:11 From Juri Matcin to Everyone:
+	+
